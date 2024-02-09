@@ -1,0 +1,7 @@
+@import "@fontsource/oswald";
+@import "@fontsource/lato";
+@import "@fontsource/roboto";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

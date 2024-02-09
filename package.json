@@ -1,0 +1,22 @@
+{
+  "name": "astro-htmx",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "@fontsource/lato": "^5.0.18",
+    "@fontsource/oswald": "^5.0.18",
+    "@fontsource/roboto": "^5.0.8",
+    "astro": "^4.3.5",
+    "astro-htmx": "^1.0.5",
+    "htmx.org": "^1.9.10",
+    "tailwindcss": "^3.4.1"
+  }
+}
