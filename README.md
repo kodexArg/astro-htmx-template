@@ -1,54 +1,127 @@
-# Astro Starter Kit: Basics
+# Astro HTMX Template
 
-```sh
-npm create astro@latest -- --template basics
+## Installation
+
+### Create a New Astro Project
+In your project folder, initialize a new Astro project:
+`npm create astro@latest .`
+
+### Add Tailwind CSS
+Use Astro's integration command to add Tailwind CSS:
+`npx astro add tailwind`
+
+### Install htmx and Astro-HTMX Integration
+To add dynamic capabilities with htmx:
+`npm install htmx.org astro-htmx`
+
+### Configure `astro.config.mjs`
+Update your `astro.config.mjs` to include the Tailwind and htmx integrations. Your configuration should look like this:
+```
+import { defineConfig } from 'astro/config';
+import htmx from 'astro-htmx';
+import tailwind from "@astrojs/tailwind";
+
+export default defineConfig({
+  integrations: [tailwind(), htmx()],
+  output: 'server'
+});
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+### Optional: Add Fonts
+Now is a good time to add your fonts. Here's how to remove and then add fonts:
+`npm uninstall @fontsource-variable/oswald @fontsource-variable/lato @fontsource-variable/roboto`
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Update base.css
+Create or update your `base.css` ideally in `src/styles` with the following content:
+```
+@import "@fontsource/oswald";
+@import "@fontsource/lato";
+@import "@fontsource/roboto";
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-## 🚀 Project Structure
+For a better development experience, you can configure your editor to recognize CSS files with Tailwind directives by creating or editing `.vscode/settings.json`:
+```
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+### Styles in Layout.astro
+To apply your styles globally, import `base.css` in your `Layout.astro`:
+`import "../styles/base.css";`
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
+## Project Structure
+The project structure is as follows:
+```
+.
+├── astro.config.mjs
+├── package.json
+├── package-lock.json
+├── public
+│   ├── favicon.svg
+│   └── img
+│       └── gabriel-cavedal.jpg
+├── README.md
+├── src
+│   ├── components
+│   │   └── Header.astro
+│   ├── env.d.ts
+│   ├── layouts
 │   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── pages
+│   │   └── index.astro
+│   └── styles
+│       └── base.css
+├── tailwind.config.mjs
+└── tsconfig.json
 ```
+(+node_modules...)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Tailwind Configuration
+Tailwind configuration to customize the theme:
+```
+export default {
+   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+   theme: {
+      extend: {},
+      fontFamily: {
+         lato: ["Lato", "sans-serif"],
+         roboto: ["Roboto", "sans-serif"],
+         oswald: ["Oswald", "sans-serif"],
+      },
+      colors: {
+         mate: {
+            50: "#f0f2f0",
+            100: "#e2e6e1",
+            200: "#c5cdc4",
+            300: "#a7b3a6",
+            400: "#8a9a89",
+            500: "#6d816b",
+            600: "#576756",
+            700: "#414d40",
+            800: "#2c342b",
+            900: "#161a15",
+         },
+         pullover: {
+            50: "#f0eeed",
+            100: "#e1dedb",
+            200: "#c3bcb8",
+            300: "#a59b94",
+            400: "#877971",
+            500: "#69584d",
+            600: "#54463e",
+            700: "#3f352e",
+            800: "#2a231f",
+            900: "#15120f",
+         },
+      },
+   },
+   plugins: [],
+};
+```
